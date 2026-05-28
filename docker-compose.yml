@@ -6,8 +6,6 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
     mem_limit: 500m
-    #  ports:
-    #    - 15672:15672
     volumes:
       - rabbitmq:/var/lib/rabbitmq
     restart: always
@@ -22,8 +20,8 @@ services:
   producer:
     container_name: producer
     restart: always
-    #ports:
-      #- ${CONVERT_API_PORT}:${CONVERT_API_PORT}
+    ports:
+      - ${CONVERT_API_PORT}:${CONVERT_API_PORT}
     env_file:
       - .env
     build:
